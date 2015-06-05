@@ -1,0 +1,19 @@
+{
+  "name": "file_uploader",
+  "version": "1.0.0",
+  "description": "File uploader with revolving uploading, hash sums, content preview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svr93/file_uploader"
+  },
+  "author": "Vladimir Shamsheev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/svr93/file_uploader/issues"
+  },
+  "homepage": "https://github.com/svr93/file_uploader"
+}
