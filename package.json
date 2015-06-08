@@ -16,9 +16,10 @@
     "url": "https://github.com/svr93/file_uploader/issues"
   },
   "homepage": "https://github.com/svr93/file_uploader",
-  "dependencies": {
+  "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-html-minifier": "^0.1.6",
+    "gulp-html-replace": "^1.5.0",
     "gulp-w3cjs": "^0.3.0"
   }
 }
