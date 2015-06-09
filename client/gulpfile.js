@@ -6,9 +6,16 @@ var replaceHtmlBlocks = require('gulp-html-replace');
 var minifyHtml = require('gulp-html-minifier');
 var checkHtml = require('gulp-w3cjs');
 
+/* ----- js processing modules ----- */
+
+var checkJs = require('gulp-jshint');
+var styleOutput = require('jshint-stylish');
+var minifyJs = require('gulp-closure-compiler-service');
+
 /* ----- other modules ----- */
 
 var gulpif = require('gulp-if');
+var concat = require('gulp-concat');
 
 /* ----- configuration vars ----- */
 
@@ -21,7 +28,10 @@ gulp.task('html', function() {
   gulp.src('index.html')
       .pipe(gulpif(production, replaceHtmlBlocks({
 
-        'js': 'js/main.min.js'
+        'js': {
+          src: 'js/main.min.js',
+          tpl: '<script defer src="%s"></script>'
+        }
 
       })))
       .pipe(gulpif(production, minifyHtml({
@@ -37,4 +47,17 @@ gulp.task('html', function() {
 
 });
 
-gulp.task('default', ['html']);
+gulp.task('js', function() {
+
+  gulp.src([
+    'js/uploader.js',
+    'js/init.js'
+  ])
+      .pipe(checkJs())
+      .pipe(checkJs.reporter(styleOutput))
+      .pipe(gulpif(production, minifyJs()))
+      .pipe(gulpif(production, concat('main.min.js')))
+      .pipe(gulp.dest('../server/js'));
+});
+
+gulp.task('default', ['html', 'js']);
