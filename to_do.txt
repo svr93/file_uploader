@@ -1,0 +1,2 @@
+1) add settings for livereload server;
+2)
