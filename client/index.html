@@ -10,16 +10,21 @@
     form, button {
       display: none;
     }
+    .infoblock {
+      width: 100%;
+      height: 50px;
+    }
   </style>
 
   <!-- build:js -->
-  <script defer src="/js/uploader.js"></script>
-  <script defer src="/js/init.js"></script>
+  <script defer src="js/uploader.js"></script>
+  <script defer src="js/init.js"></script>
   <!-- endbuild -->
 </head>
 <body>
+  <div id="result" class="infoblock"></div>
   <form id="fileForm">
     <input type="file" accept="image/*">
   </form>
-  <button id="sendFileFormData"></button>
+  <button id="sendFileFormData">Загрузить</button>
 </body>
