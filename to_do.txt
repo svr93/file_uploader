@@ -1,2 +1,2 @@
 1) add settings for livereload server;
-2)
+2) process '../' in URL;
