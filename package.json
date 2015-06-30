@@ -24,6 +24,7 @@
     "gulp-html-replace": "^1.5.0",
     "gulp-if": "^1.2.5",
     "gulp-jshint": "^1.11.0",
+    "gulp-jstransform": "https://github.com/svr93/gulp-jstransform/tarball/master",
     "gulp-w3cjs": "^0.3.0",
     "jshint-stylish": "^2.0.0"
   },
