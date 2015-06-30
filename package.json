@@ -20,13 +20,16 @@
     "gulp": "^3.9.0",
     "gulp-closure-compiler-service": "^0.5.0",
     "gulp-concat": "^2.5.2",
+    "gulp-csslint": "^0.1.5",
     "gulp-html-minifier": "^0.1.6",
     "gulp-html-replace": "^1.5.0",
     "gulp-if": "^1.2.5",
     "gulp-jshint": "^1.11.0",
     "gulp-jstransform": "https://github.com/svr93/gulp-jstransform/tarball/master",
+    "gulp-less": "^3.0.3",
     "gulp-w3cjs": "^0.3.0",
-    "jshint-stylish": "^2.0.0"
+    "jshint-stylish": "^2.0.0",
+    "less-plugin-clean-css": "^1.5.0"
   },
   "dependencies": {
     "node-static": "^0.7.6"
