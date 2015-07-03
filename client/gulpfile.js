@@ -26,10 +26,16 @@ var minifyJs = require('gulp-closure-compiler-service');
 
 var gulpif = require('gulp-if');
 var concat = require('gulp-concat');
+var connect = require('gulp-connect');
 
 /* ----- configuration vars ----- */
 
 var production = (process.argv.indexOf('--production') != -1);
+
+var AUTORELOAD_TASK = 'autoreload';
+var watch = (process.argv.indexOf(AUTORELOAD_TASK) != -1);
+
+var DIR = 'server';
 
 /* ----- tasks ----- */
 
@@ -55,7 +61,8 @@ gulp.task('html', function() {
 
       })))
       .pipe(checkHtml())
-      .pipe(gulp.dest('../server'));
+      .pipe(gulp.dest('../' + DIR))
+      .pipe(gulpif(watch, connect.reload()));
 
 });
 
@@ -70,7 +77,8 @@ gulp.task('css', function() {
       .pipe(checkCss())
       .pipe(checkCss.reporter())
       .pipe(gulpif(production, concat('main.min.css')))
-      .pipe(gulp.dest('../server/css'));
+      .pipe(gulp.dest('../' + DIR + '/css'))
+      .pipe(gulpif(watch, connect.reload()));
 });
 
 gulp.task('js', function() {
@@ -89,7 +97,27 @@ gulp.task('js', function() {
       }))
       .pipe(gulpif(production, minifyJs()))
       .pipe(gulpif(production, concat('main.min.js')))
-      .pipe(gulp.dest('../server/js'));
+      .pipe(gulp.dest('../' + DIR + '/js'))
+      .pipe(gulpif(watch, connect.reload()));
+});
+
+gulp.task('connect', function() {
+
+  connect.server({
+    port: 8080,
+    root: '../' + DIR,
+    livereload: true
+  });
+
+});
+
+gulp.task('watch', function() {
+
+  gulp.watch('index.html', ['html']);
+  gulp.watch('less/*.less', ['css']);
+  gulp.watch('js/*.js', ['js']);
+
 });
 
 gulp.task('default', ['html', 'css', 'js']);
+gulp.task(AUTORELOAD_TASK, ['default', 'connect', 'watch']);
